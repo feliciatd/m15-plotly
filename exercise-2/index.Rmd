@@ -1,0 +1,33 @@
+---
+title: "exercise-2"
+author: "Felicia Dunscomb"
+date: "April 27, 2017"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Random Chart
+
+```{r, echo = FALSE}
+# install.packages("dplyr")
+library('dplyr')
+library(plotly)
+# Some random data
+Cats <- c("Calico", "Persian", "Siamese", "American Shorthair" )
+PopularityPercent <- c(34, 27, 22, 17)
+Cost <- c(123.65, 543.21, 324.50, 492.43)
+data <- data.frame(Cats, PopularityPercent, Cost)
+
+# Create plotly object
+plot_ly(data, x = Cost, y = PopularityPercent, type = "scatter", mode = 'text', text = ~Cats, textposition = 'middle right', textfont = list(color = '#000000', size = 16)) %>% 
+  layout(title = 'Cat Popularity and Cost',
+             xaxis = list(title = 'Cost (USD$)',
+                          zeroline = TRUE,
+                          range = c(0, 700)),
+             yaxis = list(title = 'Popularity by Percentage (%)',
+                          range = c(0,100)))
+```
+
